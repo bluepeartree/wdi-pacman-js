@@ -63,6 +63,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  for(index = 0; index < ghosts.length; index ++) {
+    console.log(`(${index + 1}) Eat ${ghosts[index]['name']}`);
+  }
   console.log('(q) Quit');
 }
 
