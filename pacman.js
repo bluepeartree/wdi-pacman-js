@@ -70,7 +70,7 @@ function displayMenu() {
   console.log('(p) Eat Power-Pellet');
   }
   for(index = 0; index < ghosts.length; index ++) {
-    console.log(`(${index + 1}) Eat ${ghosts[index]['name']}`);
+    console.log(`(${index + 1}) Eat ${ghosts[index]['name']} (${ghostEdibilityStatus(ghosts[index])})`);
   }
   console.log('(q) Quit');
 }
@@ -99,8 +99,13 @@ function eatPowerPellet() {
 function eatGhost(ghost) {
   if (ghost['edible']===false){
     lives -=1;
-    console.log(`Whoops! You ate inedible ${ghost['colour']} ${ghost['name']}`);
+    console.log(`Whoops! You just ate inedible ${ghost['colour']} ${ghost['name']}!`);
     processGameOver();
+  }
+  else {
+    score += 200;
+    console.log(`Chomp! You just ate ${ghost['colour']} ${ghost['name']}!`);
+    ghost['edible']=false;
   }
 }
 
@@ -110,6 +115,15 @@ function processGameOver() {
   }
 }
 
+function ghostEdibilityStatus(ghost) {
+  if (ghost['edible']===true){
+    return 'edible';
+  }
+  else {
+    return 'inedible';
+  }
+
+}
 // Process Player's Input
 function processInput(key) {
   switch(key) {
